@@ -9,17 +9,23 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MetroFramework.Forms;
 using MetroFramework;
+using System.Data.SqlClient;
 
 namespace BugTrackingApplication {
     public partial class TesterDashboard : MetroForm {
         DataTable dataTable;
+        string testerEmail;
         RouteInformation routeInformation;
         int testerId;
         public TesterDashboard() {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// Gets the Tester Information
+        /// </summary>
+        /// <param name="email">Tester Email</param>
         public void getTesterInformation(string email) {
+            testerEmail = email;
             DataConnection dataconnection = new DataConnection();       // Getting Database Connection
             string sqlQuery = "SELECT * FROM userTable WHERE email = '" + email + "'";   //SQL Query for Select
 
@@ -62,6 +68,38 @@ namespace BugTrackingApplication {
         private void logOutToolStripMenuItem_Click(object sender, EventArgs e) {
             Intro intro = new Intro();
             intro.Show();
+            this.Hide();
+        }
+
+        private void projectsToolStripMenuItem_Click(object sender, EventArgs e) {
+            MetroMessageBox.Show(this, "Number of Projects Found: " + projectNumber(), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        /// <summary>
+        /// Store Procedure to get the project number
+        /// </summary>
+        /// <returns>An Integer Value of total number of Projects</returns>
+        private string projectNumber() {
+            SqlConnection sqlConnection;
+            DataConnection dataConnection = new DataConnection();
+            sqlConnection = dataConnection.retrieveConnecion();
+
+            SqlCommand cmd = new SqlCommand("projectNumber", sqlConnection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            //cmd.Parameters.Add("@id", SqlDbType.Int).Value = developerId;
+            //cmd.Parameters.Add("@LastName", SqlDbType.VarChar).Value = txtLastName.Text;
+            sqlConnection.Open();
+
+            //cmd.ExecuteNonQuery();
+            //Console.WriteLine("Check Here");
+            //Console.WriteLine(cmd.ExecuteScalar().ToString());
+            return cmd.ExecuteScalar().ToString();
+        }
+
+        private void projectsToolStripMenuItem1_Click(object sender, EventArgs e) {
+            //Report Here
+            ReportProject reportProject = new ReportProject();
+            reportProject.getDeveloperInformation(testerEmail);
+            reportProject.Show();
             this.Hide();
         }
     }

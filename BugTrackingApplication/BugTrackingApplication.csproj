@@ -1,5 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SSDTUnitTestPath Condition="'$(SSDTUnitTestPath)' == ''">$(VsInstallRoot)\Common7\IDE\Extensions\Microsoft\SQLDB</SSDTUnitTestPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SSDTPath Condition="'$(SSDTPath)' == ''">$(VsInstallRoot)\Common7\IDE\Extensions\Microsoft\SQLDB\DAC\130</SSDTPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="..\packages\LibGit2Sharp.NativeBinaries.1.0.185\build\LibGit2Sharp.NativeBinaries.props" Condition="Exists('..\packages\LibGit2Sharp.NativeBinaries.1.0.185\build\LibGit2Sharp.NativeBinaries.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -11,6 +21,8 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,8 +44,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ClosedXML, Version=0.90.0.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
+      <HintPath>..\packages\ClosedXML.0.90.0\lib\net452\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper, Version=1.50.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.50.4\lib\net451\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.7.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.7.2\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="FastMember.Signed, Version=1.0.0.9, Culture=neutral, PublicKeyToken=9e8f22703bef9a29, processorArchitecture=MSIL">
+      <HintPath>..\packages\FastMember.Signed.1.1.0\lib\net40\FastMember.Signed.dll</HintPath>
+    </Reference>
     <Reference Include="ICSharpCode.TextEditor, Version=3.2.1.6466, Culture=neutral, PublicKeyToken=4d61825e8dd49f1a, processorArchitecture=MSIL">
       <HintPath>..\packages\ICSharpCode.TextEditor.3.2.1.6466\lib\Net20\ICSharpCode.TextEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="LibGit2Sharp, Version=0.24.0.0, Culture=neutral, PublicKeyToken=7cbde695407f0333, processorArchitecture=MSIL">
+      <HintPath>..\packages\LibGit2Sharp.0.24.0\lib\net40\LibGit2Sharp.dll</HintPath>
     </Reference>
     <Reference Include="MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
       <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
@@ -45,7 +72,15 @@
       <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Fonts.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.Primitives.4.0.1\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Packaging, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Packaging.4.0.0\lib\net46\System.IO.Packaging.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,8 +90,15 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminChart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminChart.Designer.cs">
+      <DependentUpon>AdminChart.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdminLogInForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,6 +111,12 @@
     <Compile Include="AdminPanel.Designer.cs">
       <DependentUpon>AdminPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdminProjectTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminProjectTable.Designer.cs">
+      <DependentUpon>AdminProjectTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="BugInformation.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +128,18 @@
     </Compile>
     <Compile Include="BugReport.Designer.cs">
       <DependentUpon>BugReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BugSolvedInformation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BugSolvedInformation.Designer.cs">
+      <DependentUpon>BugSolvedInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BugStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BugStatus.Designer.cs">
+      <DependentUpon>BugStatus.cs</DependentUpon>
     </Compile>
     <Compile Include="bugtrackingapplicationDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -99,6 +159,18 @@
     <Compile Include="DeveloperInformation.Designer.cs">
       <DependentUpon>DeveloperInformation.cs</DependentUpon>
     </Compile>
+    <Compile Include="DeveloperTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeveloperTable.Designer.cs">
+      <DependentUpon>DeveloperTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryInformation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryInformation.Designer.cs">
+      <DependentUpon>HistoryInformation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Intro.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,12 +189,25 @@
     <Compile Include="ManagerDashboard.Designer.cs">
       <DependentUpon>ManagerDashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="ManagerIdentification.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProjectInformation.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ProjectInformation.Designer.cs">
       <DependentUpon>ProjectInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProjectStatus.Designer.cs">
+      <DependentUpon>ProjectStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProjectTable.Designer.cs">
+      <DependentUpon>ProjectTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegexUtilities.cs" />
@@ -131,6 +216,30 @@
     </Compile>
     <Compile Include="RegisterForm.Designer.cs">
       <DependentUpon>RegisterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportBug.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportBug.Designer.cs">
+      <DependentUpon>ReportBug.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportDeveloper.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportDeveloper.Designer.cs">
+      <DependentUpon>ReportDeveloper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportProject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportProject.Designer.cs">
+      <DependentUpon>ReportProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTester.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportTester.Designer.cs">
+      <DependentUpon>ReportTester.cs</DependentUpon>
     </Compile>
     <Compile Include="RouteInformation.cs" />
     <Compile Include="TesterDashboard.cs">
@@ -145,17 +254,41 @@
     <Compile Include="TesterInformation.Designer.cs">
       <DependentUpon>TesterInformation.cs</DependentUpon>
     </Compile>
+    <Compile Include="TesterTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TesterTable.Designer.cs">
+      <DependentUpon>TesterTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserChart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserChart.Designer.cs">
+      <DependentUpon>UserChart.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserInformation.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UserInformation.Designer.cs">
       <DependentUpon>UserInformation.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserTable.Designer.cs">
+      <DependentUpon>UserTable.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AdminChart.resx">
+      <DependentUpon>AdminChart.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdminLogInForm.resx">
       <DependentUpon>AdminLogInForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdminPanel.resx">
       <DependentUpon>AdminPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminProjectTable.resx">
+      <DependentUpon>AdminProjectTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BugInformation.resx">
       <DependentUpon>BugInformation.cs</DependentUpon>
@@ -163,11 +296,23 @@
     <EmbeddedResource Include="BugReport.resx">
       <DependentUpon>BugReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BugSolvedInformation.resx">
+      <DependentUpon>BugSolvedInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BugStatus.resx">
+      <DependentUpon>BugStatus.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DeveloperDashboard.resx">
       <DependentUpon>DeveloperDashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DeveloperInformation.resx">
       <DependentUpon>DeveloperInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeveloperTable.resx">
+      <DependentUpon>DeveloperTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistoryInformation.resx">
+      <DependentUpon>HistoryInformation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Intro.resx">
       <DependentUpon>Intro.cs</DependentUpon>
@@ -181,6 +326,12 @@
     <EmbeddedResource Include="ProjectInformation.resx">
       <DependentUpon>ProjectInformation.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProjectStatus.resx">
+      <DependentUpon>ProjectStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectTable.resx">
+      <DependentUpon>ProjectTable.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -193,14 +344,35 @@
     <EmbeddedResource Include="RegisterForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportBug.resx">
+      <DependentUpon>ReportBug.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportDeveloper.resx">
+      <DependentUpon>ReportDeveloper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportProject.resx">
+      <DependentUpon>ReportProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTester.resx">
+      <DependentUpon>ReportTester.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TesterDashboard.resx">
       <DependentUpon>TesterDashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TesterInformation.resx">
       <DependentUpon>TesterInformation.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TesterTable.resx">
+      <DependentUpon>TesterTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserChart.resx">
+      <DependentUpon>UserChart.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserInformation.resx">
       <DependentUpon>UserInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserTable.resx">
+      <DependentUpon>UserTable.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="bugtrackingapplicationDataSet.xsc">
       <DependentUpon>bugtrackingapplicationDataSet.xsd</DependentUpon>
@@ -227,5 +399,31 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup Condition="$(VisualStudioVersion) == '15.0'">
+    <Reference Include="Microsoft.Data.Tools.Schema.Sql, Version=13.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>$(SSDTPath)\Microsoft.Data.Tools.Schema.Sql.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.Tools.Schema.Sql.UnitTesting, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>$(SSDTUnitTestPath)\Microsoft.Data.Tools.Schema.Sql.UnitTesting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.Tools.Schema.Sql.UnitTestingAdapter, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>$(SSDTUnitTestPath)\Microsoft.Data.Tools.Schema.Sql.UnitTestingAdapter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\LibGit2Sharp.NativeBinaries.1.0.185\build\LibGit2Sharp.NativeBinaries.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\LibGit2Sharp.NativeBinaries.1.0.185\build\LibGit2Sharp.NativeBinaries.props'))" />
+  </Target>
+  <PropertyGroup>
+    <SsdtUnitTestVersion>3.1</SsdtUnitTestVersion>
+  </PropertyGroup>
+  <Import Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.Sql.UnitTesting.targets" Condition="$(VisualStudioVersion) != '15.0' And '$(SQLDBExtensionsRefPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.Sql.UnitTesting.targets" Condition="$(VisualStudioVersion) != '15.0' And '$(SQLDBExtensionsRefPath)' == ''" />
 </Project>

@@ -23,6 +23,11 @@ namespace BugTrackingApplication {
             return dataTable;
         }
 
+        public SqlConnection retrieveConnecion() {
+            SqlConnection con = new SqlConnection(connectionString);
+            return con;
+        }
+
         public DataTable selectDataConnectionStart(string sqlQuery) {
             SqlConnection sqlConnection = new SqlConnection(connectionString);    //New SQL Connection
             sqlConnection.Open();                                       //Opening the New SQL Connection

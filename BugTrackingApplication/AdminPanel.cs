@@ -9,9 +9,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MetroFramework.Forms;
 using MetroFramework;
+using ClosedXML.Excel;
+using System.Data.SqlClient;
 
 namespace BugTrackingApplication {
     public partial class AdminPanel : MetroForm {
+        private SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
+        DataTable dataTable = new DataTable();
         public AdminPanel() {
             InitializeComponent();
         }
@@ -37,6 +41,58 @@ namespace BugTrackingApplication {
         private void logOutToolStripMenuItem_Click(object sender, EventArgs e) {
             Intro intro = new Intro();
             intro.Show();
+            this.Hide();
+        }
+
+        private void usersToolStripMenuItem1_Click(object sender, EventArgs e) {
+            //Excel Saved File Here
+            var workbook = new XLWorkbook();
+            var worksheet = workbook.Worksheets.Add("User Sheet");
+
+            //Adding the Titles
+            worksheet.Cell("A1").Value = "Name";
+            worksheet.Cell("B1").Value = "UserName";
+            worksheet.Cell("C1").Value = "Email";
+            worksheet.Cell("D1").Value = "Gender";
+            worksheet.Cell("E1").Value = "Address";
+
+            int count = 2;
+            DataConnection dataconnection = new DataConnection();
+            string sqlSelectQuery = "SELECT  * from userTable";
+            sqlDataAdapter = dataconnection.selectSelectedDataConnectionStart(sqlSelectQuery);
+            sqlDataAdapter.Fill(dataTable);
+            foreach (DataRow row in dataTable.Rows) {
+                worksheet.Cell("A" + count).Value = row["name"].ToString();
+                worksheet.Cell("B" + count).Value = row["username"].ToString();
+                worksheet.Cell("C" + count).Value = row["email"].ToString();
+                worksheet.Cell("D" + count).Value = row["gender"].ToString(); ;
+                worksheet.Cell("E" + count).Value = row["address"].ToString(); ;
+                count++;
+            }
+            workbook.SaveAs("UserSheet.xlsx");
+            MetroMessageBox.Show(this, "Excel File Successfully Created", "Action Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            try {
+                System.Diagnostics.Process.Start("C:\\Users\\LENOVO\\source\\repos\\BugTrackingApplication\\BugTrackingApplication\\bin\\Debug\\UserSheet.xlsx");
+            } catch (Exception ex) {
+                MessageBox.Show("Unable to open link that was clicked.");
+            }
+        }
+
+        private void usersToolStripMenuItem2_Click(object sender, EventArgs e) {
+            AdminChart adminChart = new AdminChart();
+            adminChart.Show();
+            this.Hide();
+        }
+
+        private void usersToolStripMenuItem3_Click(object sender, EventArgs e) {
+            UserChart userChart = new UserChart();
+            userChart.Show();
+            this.Hide();
+        }
+
+        private void projectToolStripMenuItem_Click(object sender, EventArgs e) {
+            AdminProjectTable adminProjectTable = new AdminProjectTable();
+            adminProjectTable.Show();
             this.Hide();
         }
     }

@@ -42,6 +42,12 @@
             this.projectTextBox = new MetroFramework.Controls.MetroComboBox();
             this.comboBox1 = new MetroFramework.Controls.MetroComboBox();
             this.metroButton1 = new MetroFramework.Controls.MetroButton();
+            this.metroComboBox1 = new MetroFramework.Controls.MetroComboBox();
+            this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
+            this.developerNoteTextBox = new MetroFramework.Controls.MetroTextBox();
+            this.uploadImage = new MetroFramework.Controls.MetroButton();
+            this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
+            this.bugStatusComboBox = new MetroFramework.Controls.MetroComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.projectTableBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bugtrackingapplicationDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userTableBindingSource)).BeginInit();
@@ -130,7 +136,7 @@
             // metroLabel3
             // 
             this.metroLabel3.AutoSize = true;
-            this.metroLabel3.Location = new System.Drawing.Point(532, 368);
+            this.metroLabel3.Location = new System.Drawing.Point(548, 533);
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(50, 19);
             this.metroLabel3.TabIndex = 11;
@@ -139,7 +145,7 @@
             // metroLabel4
             // 
             this.metroLabel4.AutoSize = true;
-            this.metroLabel4.Location = new System.Drawing.Point(532, 403);
+            this.metroLabel4.Location = new System.Drawing.Point(548, 568);
             this.metroLabel4.Name = "metroLabel4";
             this.metroLabel4.Size = new System.Drawing.Size(69, 19);
             this.metroLabel4.TabIndex = 11;
@@ -156,7 +162,7 @@
             // 
             // reportButton
             // 
-            this.reportButton.Location = new System.Drawing.Point(619, 440);
+            this.reportButton.Location = new System.Drawing.Point(635, 648);
             this.reportButton.Name = "reportButton";
             this.reportButton.Size = new System.Drawing.Size(127, 37);
             this.reportButton.TabIndex = 7;
@@ -197,7 +203,7 @@
             // 
             // gitButton
             // 
-            this.gitButton.Location = new System.Drawing.Point(1073, 144);
+            this.gitButton.Location = new System.Drawing.Point(716, 148);
             this.gitButton.Name = "gitButton";
             this.gitButton.Size = new System.Drawing.Size(75, 23);
             this.gitButton.TabIndex = 3;
@@ -209,7 +215,7 @@
             // 
             this.projectTextBox.FormattingEnabled = true;
             this.projectTextBox.ItemHeight = 23;
-            this.projectTextBox.Location = new System.Drawing.Point(619, 368);
+            this.projectTextBox.Location = new System.Drawing.Point(635, 533);
             this.projectTextBox.Name = "projectTextBox";
             this.projectTextBox.Size = new System.Drawing.Size(206, 29);
             this.projectTextBox.TabIndex = 5;
@@ -219,7 +225,7 @@
             // 
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.ItemHeight = 23;
-            this.comboBox1.Location = new System.Drawing.Point(619, 403);
+            this.comboBox1.Location = new System.Drawing.Point(635, 568);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(206, 29);
             this.comboBox1.TabIndex = 6;
@@ -235,20 +241,115 @@
             this.metroButton1.UseSelectable = true;
             this.metroButton1.Click += new System.EventHandler(this.metroButton1_Click);
             // 
+            // metroComboBox1
+            // 
+            this.metroComboBox1.FormattingEnabled = true;
+            this.metroComboBox1.ItemHeight = 23;
+            this.metroComboBox1.Items.AddRange(new object[] {
+            "C#",
+            "HTML",
+            "XML"});
+            this.metroComboBox1.Location = new System.Drawing.Point(1027, 148);
+            this.metroComboBox1.Name = "metroComboBox1";
+            this.metroComboBox1.Size = new System.Drawing.Size(121, 29);
+            this.metroComboBox1.TabIndex = 13;
+            this.metroComboBox1.UseSelectable = true;
+            this.metroComboBox1.SelectedIndexChanged += new System.EventHandler(this.metroComboBox1_SelectedIndexChanged);
+            // 
+            // metroLabel6
+            // 
+            this.metroLabel6.AutoSize = true;
+            this.metroLabel6.Location = new System.Drawing.Point(635, 348);
+            this.metroLabel6.Name = "metroLabel6";
+            this.metroLabel6.Size = new System.Drawing.Size(102, 19);
+            this.metroLabel6.TabIndex = 11;
+            this.metroLabel6.Text = "Developer Note";
+            // 
+            // developerNoteTextBox
+            // 
+            // 
+            // 
+            // 
+            this.developerNoteTextBox.CustomButton.Image = null;
+            this.developerNoteTextBox.CustomButton.Location = new System.Drawing.Point(180, 2);
+            this.developerNoteTextBox.CustomButton.Name = "";
+            this.developerNoteTextBox.CustomButton.Size = new System.Drawing.Size(143, 143);
+            this.developerNoteTextBox.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.developerNoteTextBox.CustomButton.TabIndex = 1;
+            this.developerNoteTextBox.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.developerNoteTextBox.CustomButton.UseSelectable = true;
+            this.developerNoteTextBox.CustomButton.Visible = false;
+            this.developerNoteTextBox.Lines = new string[0];
+            this.developerNoteTextBox.Location = new System.Drawing.Point(530, 370);
+            this.developerNoteTextBox.MaxLength = 32767;
+            this.developerNoteTextBox.Multiline = true;
+            this.developerNoteTextBox.Name = "developerNoteTextBox";
+            this.developerNoteTextBox.PasswordChar = '\0';
+            this.developerNoteTextBox.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.developerNoteTextBox.SelectedText = "";
+            this.developerNoteTextBox.SelectionLength = 0;
+            this.developerNoteTextBox.SelectionStart = 0;
+            this.developerNoteTextBox.ShortcutsEnabled = true;
+            this.developerNoteTextBox.Size = new System.Drawing.Size(326, 148);
+            this.developerNoteTextBox.TabIndex = 2;
+            this.developerNoteTextBox.UseSelectable = true;
+            this.developerNoteTextBox.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.developerNoteTextBox.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // uploadImage
+            // 
+            this.uploadImage.Location = new System.Drawing.Point(449, 370);
+            this.uploadImage.Name = "uploadImage";
+            this.uploadImage.Size = new System.Drawing.Size(75, 23);
+            this.uploadImage.TabIndex = 14;
+            this.uploadImage.Text = "Upload";
+            this.uploadImage.UseSelectable = true;
+            this.uploadImage.Click += new System.EventHandler(this.uploadImage_Click);
+            // 
+            // metroLabel7
+            // 
+            this.metroLabel7.AutoSize = true;
+            this.metroLabel7.Location = new System.Drawing.Point(548, 608);
+            this.metroLabel7.Name = "metroLabel7";
+            this.metroLabel7.Size = new System.Drawing.Size(70, 19);
+            this.metroLabel7.TabIndex = 11;
+            this.metroLabel7.Text = "Bug Status";
+            // 
+            // bugStatusComboBox
+            // 
+            this.bugStatusComboBox.FormattingEnabled = true;
+            this.bugStatusComboBox.ItemHeight = 23;
+            this.bugStatusComboBox.Items.AddRange(new object[] {
+            "critical",
+            "warning",
+            "information"});
+            this.bugStatusComboBox.Location = new System.Drawing.Point(635, 604);
+            this.bugStatusComboBox.Name = "bugStatusComboBox";
+            this.bugStatusComboBox.Size = new System.Drawing.Size(206, 29);
+            this.bugStatusComboBox.TabIndex = 15;
+            this.bugStatusComboBox.UseSelectable = true;
+            this.bugStatusComboBox.SelectedIndexChanged += new System.EventHandler(this.bugStatusComboBox_SelectedIndexChanged);
+            // 
             // BugReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1366, 740);
+            this.Controls.Add(this.bugStatusComboBox);
+            this.Controls.Add(this.uploadImage);
+            this.Controls.Add(this.metroComboBox1);
             this.Controls.Add(this.metroButton1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.projectTextBox);
             this.Controls.Add(this.gitButton);
             this.Controls.Add(this.reportButton);
             this.Controls.Add(this.metroLabel5);
+            this.Controls.Add(this.metroLabel7);
             this.Controls.Add(this.metroLabel4);
             this.Controls.Add(this.metroLabel3);
+            this.Controls.Add(this.metroLabel6);
             this.Controls.Add(this.metroLabel2);
+            this.Controls.Add(this.developerNoteTextBox);
             this.Controls.Add(this.bugDescriptionBox);
             this.Controls.Add(this.bugNameBox);
             this.Controls.Add(this.metroLabel1);
@@ -283,5 +384,11 @@
         private MetroFramework.Controls.MetroComboBox projectTextBox;
         private MetroFramework.Controls.MetroComboBox comboBox1;
         private MetroFramework.Controls.MetroButton metroButton1;
+        private MetroFramework.Controls.MetroComboBox metroComboBox1;
+        private MetroFramework.Controls.MetroLabel metroLabel6;
+        private MetroFramework.Controls.MetroTextBox developerNoteTextBox;
+        private MetroFramework.Controls.MetroButton uploadImage;
+        private MetroFramework.Controls.MetroLabel metroLabel7;
+        private MetroFramework.Controls.MetroComboBox bugStatusComboBox;
     }
 }

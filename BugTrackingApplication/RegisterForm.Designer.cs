@@ -42,10 +42,16 @@
             this.roleTextBox = new MetroFramework.Controls.MetroLabel();
             this.metroComboBox1 = new MetroFramework.Controls.MetroComboBox();
             this.registerButton = new MetroFramework.Controls.MetroButton();
-            this.loginButton = new MetroFramework.Controls.MetroButton();
             this.metroButton1 = new MetroFramework.Controls.MetroButton();
+            this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
+            this.rePasswordTextBox = new MetroFramework.Controls.MetroTextBox();
+            this.metroLabel8 = new MetroFramework.Controls.MetroLabel();
+            this.metroComboBox2 = new MetroFramework.Controls.MetroComboBox();
+            this.projectTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.projectTableTableAdapter = new BugTrackingApplication.bugtrackingapplicationDataSetTableAdapters.projectTableTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.groupTableBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bugtrackingapplicationDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.projectTableBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // groupTableBindingSource
@@ -221,7 +227,7 @@
             // metroLabel5
             // 
             this.metroLabel5.AutoSize = true;
-            this.metroLabel5.Location = new System.Drawing.Point(456, 227);
+            this.metroLabel5.Location = new System.Drawing.Point(456, 256);
             this.metroLabel5.Name = "metroLabel5";
             this.metroLabel5.Size = new System.Drawing.Size(52, 19);
             this.metroLabel5.TabIndex = 11;
@@ -242,7 +248,7 @@
             this.genderTextBox.CustomButton.UseSelectable = true;
             this.genderTextBox.CustomButton.Visible = false;
             this.genderTextBox.Lines = new string[0];
-            this.genderTextBox.Location = new System.Drawing.Point(514, 227);
+            this.genderTextBox.Location = new System.Drawing.Point(514, 256);
             this.genderTextBox.MaxLength = 32767;
             this.genderTextBox.Name = "genderTextBox";
             this.genderTextBox.PasswordChar = '\0';
@@ -252,7 +258,7 @@
             this.genderTextBox.SelectionStart = 0;
             this.genderTextBox.ShortcutsEnabled = true;
             this.genderTextBox.Size = new System.Drawing.Size(230, 23);
-            this.genderTextBox.TabIndex = 5;
+            this.genderTextBox.TabIndex = 6;
             this.genderTextBox.UseSelectable = true;
             this.genderTextBox.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.genderTextBox.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
@@ -260,7 +266,7 @@
             // metroLabel6
             // 
             this.metroLabel6.AutoSize = true;
-            this.metroLabel6.Location = new System.Drawing.Point(448, 256);
+            this.metroLabel6.Location = new System.Drawing.Point(448, 285);
             this.metroLabel6.Name = "metroLabel6";
             this.metroLabel6.Size = new System.Drawing.Size(56, 19);
             this.metroLabel6.TabIndex = 11;
@@ -281,7 +287,7 @@
             this.addressTextBox.CustomButton.UseSelectable = true;
             this.addressTextBox.CustomButton.Visible = false;
             this.addressTextBox.Lines = new string[0];
-            this.addressTextBox.Location = new System.Drawing.Point(514, 256);
+            this.addressTextBox.Location = new System.Drawing.Point(514, 285);
             this.addressTextBox.MaxLength = 32767;
             this.addressTextBox.Name = "addressTextBox";
             this.addressTextBox.PasswordChar = '\0';
@@ -291,7 +297,7 @@
             this.addressTextBox.SelectionStart = 0;
             this.addressTextBox.ShortcutsEnabled = true;
             this.addressTextBox.Size = new System.Drawing.Size(230, 23);
-            this.addressTextBox.TabIndex = 6;
+            this.addressTextBox.TabIndex = 7;
             this.addressTextBox.UseSelectable = true;
             this.addressTextBox.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.addressTextBox.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
@@ -300,7 +306,7 @@
             // roleTextBox
             // 
             this.roleTextBox.AutoSize = true;
-            this.roleTextBox.Location = new System.Drawing.Point(463, 285);
+            this.roleTextBox.Location = new System.Drawing.Point(463, 314);
             this.roleTextBox.Name = "roleTextBox";
             this.roleTextBox.Size = new System.Drawing.Size(35, 19);
             this.roleTextBox.TabIndex = 11;
@@ -312,31 +318,21 @@
             this.metroComboBox1.DisplayMember = "groupname";
             this.metroComboBox1.FormattingEnabled = true;
             this.metroComboBox1.ItemHeight = 23;
-            this.metroComboBox1.Location = new System.Drawing.Point(514, 285);
+            this.metroComboBox1.Location = new System.Drawing.Point(514, 314);
             this.metroComboBox1.Name = "metroComboBox1";
             this.metroComboBox1.Size = new System.Drawing.Size(230, 29);
-            this.metroComboBox1.TabIndex = 7;
+            this.metroComboBox1.TabIndex = 8;
             this.metroComboBox1.UseSelectable = true;
             // 
             // registerButton
             // 
-            this.registerButton.Location = new System.Drawing.Point(471, 332);
+            this.registerButton.Location = new System.Drawing.Point(544, 394);
             this.registerButton.Name = "registerButton";
             this.registerButton.Size = new System.Drawing.Size(117, 40);
-            this.registerButton.TabIndex = 9;
+            this.registerButton.TabIndex = 10;
             this.registerButton.Text = "Register";
             this.registerButton.UseSelectable = true;
             this.registerButton.Click += new System.EventHandler(this.registerButton_Click);
-            // 
-            // loginButton
-            // 
-            this.loginButton.Location = new System.Drawing.Point(611, 332);
-            this.loginButton.Name = "loginButton";
-            this.loginButton.Size = new System.Drawing.Size(117, 40);
-            this.loginButton.TabIndex = 8;
-            this.loginButton.Text = "Login";
-            this.loginButton.UseSelectable = true;
-            this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
             // 
             // metroButton1
             // 
@@ -348,20 +344,92 @@
             this.metroButton1.UseSelectable = true;
             this.metroButton1.Click += new System.EventHandler(this.metroButton1_Click);
             // 
+            // metroLabel7
+            // 
+            this.metroLabel7.AutoSize = true;
+            this.metroLabel7.Location = new System.Drawing.Point(424, 227);
+            this.metroLabel7.Name = "metroLabel7";
+            this.metroLabel7.Size = new System.Drawing.Size(84, 19);
+            this.metroLabel7.TabIndex = 11;
+            this.metroLabel7.Text = "Re-Password";
+            // 
+            // rePasswordTextBox
+            // 
+            // 
+            // 
+            // 
+            this.rePasswordTextBox.CustomButton.Image = null;
+            this.rePasswordTextBox.CustomButton.Location = new System.Drawing.Point(208, 1);
+            this.rePasswordTextBox.CustomButton.Name = "";
+            this.rePasswordTextBox.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.rePasswordTextBox.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.rePasswordTextBox.CustomButton.TabIndex = 1;
+            this.rePasswordTextBox.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.rePasswordTextBox.CustomButton.UseSelectable = true;
+            this.rePasswordTextBox.CustomButton.Visible = false;
+            this.rePasswordTextBox.Lines = new string[0];
+            this.rePasswordTextBox.Location = new System.Drawing.Point(514, 227);
+            this.rePasswordTextBox.MaxLength = 32767;
+            this.rePasswordTextBox.Name = "rePasswordTextBox";
+            this.rePasswordTextBox.PasswordChar = '*';
+            this.rePasswordTextBox.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.rePasswordTextBox.SelectedText = "";
+            this.rePasswordTextBox.SelectionLength = 0;
+            this.rePasswordTextBox.SelectionStart = 0;
+            this.rePasswordTextBox.ShortcutsEnabled = true;
+            this.rePasswordTextBox.Size = new System.Drawing.Size(230, 23);
+            this.rePasswordTextBox.TabIndex = 5;
+            this.rePasswordTextBox.UseSelectable = true;
+            this.rePasswordTextBox.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.rePasswordTextBox.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // metroLabel8
+            // 
+            this.metroLabel8.AutoSize = true;
+            this.metroLabel8.Location = new System.Drawing.Point(454, 349);
+            this.metroLabel8.Name = "metroLabel8";
+            this.metroLabel8.Size = new System.Drawing.Size(50, 19);
+            this.metroLabel8.TabIndex = 11;
+            this.metroLabel8.Text = "Project";
+            // 
+            // metroComboBox2
+            // 
+            this.metroComboBox2.DataSource = this.projectTableBindingSource;
+            this.metroComboBox2.DisplayMember = "projectname";
+            this.metroComboBox2.FormattingEnabled = true;
+            this.metroComboBox2.ItemHeight = 23;
+            this.metroComboBox2.Location = new System.Drawing.Point(514, 349);
+            this.metroComboBox2.Name = "metroComboBox2";
+            this.metroComboBox2.Size = new System.Drawing.Size(230, 29);
+            this.metroComboBox2.TabIndex = 14;
+            this.metroComboBox2.UseSelectable = true;
+            // 
+            // projectTableBindingSource
+            // 
+            this.projectTableBindingSource.DataMember = "projectTable";
+            this.projectTableBindingSource.DataSource = this.bugtrackingapplicationDataSet;
+            // 
+            // projectTableTableAdapter
+            // 
+            this.projectTableTableAdapter.ClearBeforeFill = true;
+            // 
             // RegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1366, 740);
+            this.Controls.Add(this.metroComboBox2);
             this.Controls.Add(this.metroButton1);
-            this.Controls.Add(this.loginButton);
             this.Controls.Add(this.registerButton);
+            this.Controls.Add(this.metroLabel8);
             this.Controls.Add(this.metroComboBox1);
             this.Controls.Add(this.roleTextBox);
             this.Controls.Add(this.addressTextBox);
             this.Controls.Add(this.metroLabel6);
             this.Controls.Add(this.genderTextBox);
             this.Controls.Add(this.metroLabel5);
+            this.Controls.Add(this.rePasswordTextBox);
+            this.Controls.Add(this.metroLabel7);
             this.Controls.Add(this.passwordTextBox);
             this.Controls.Add(this.metroLabel4);
             this.Controls.Add(this.emailTextBox);
@@ -376,6 +444,7 @@
             this.Load += new System.EventHandler(this.RegisterForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.groupTableBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bugtrackingapplicationDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.projectTableBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -400,7 +469,12 @@
         private MetroFramework.Controls.MetroLabel roleTextBox;
         private MetroFramework.Controls.MetroComboBox metroComboBox1;
         private MetroFramework.Controls.MetroButton registerButton;
-        private MetroFramework.Controls.MetroButton loginButton;
         private MetroFramework.Controls.MetroButton metroButton1;
+        private MetroFramework.Controls.MetroLabel metroLabel7;
+        private MetroFramework.Controls.MetroTextBox rePasswordTextBox;
+        private MetroFramework.Controls.MetroLabel metroLabel8;
+        private MetroFramework.Controls.MetroComboBox metroComboBox2;
+        private System.Windows.Forms.BindingSource projectTableBindingSource;
+        private bugtrackingapplicationDataSetTableAdapters.projectTableTableAdapter projectTableTableAdapter;
     }
 }

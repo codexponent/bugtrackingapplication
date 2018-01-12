@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using MetroFramework.Forms;
 using MetroFramework;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
 
 namespace BugTrackingApplication {
     public partial class RegisterForm : MetroForm {
@@ -25,6 +26,8 @@ namespace BugTrackingApplication {
         }
 
         private void RegisterForm_Load(object sender, EventArgs e) {
+            // TODO: This line of code loads data into the 'bugtrackingapplicationDataSet.projectTable' table. You can move, or remove it, as needed.
+            this.projectTableTableAdapter.Fill(this.bugtrackingapplicationDataSet.projectTable);
             this.TopMost = true;
             // TODO: This line of code loads data into the 'bugtrackingapplicationDataSet.groupTable' table. You can move, or remove it, as needed.
             this.groupTableTableAdapter.Fill(this.bugtrackingapplicationDataSet.groupTable);
@@ -38,7 +41,9 @@ namespace BugTrackingApplication {
         private void button2_Click(object sender, EventArgs e) {
             
         }
-
+        /// <summary>
+        /// Redirects to the LoginForm Form
+        /// </summary>
         private void redirectLoginForm() {          // A generic class to get to the login form
             LogInForm loginForm = new LogInForm();      // A new loginform object
             loginForm.Show();
@@ -62,12 +67,19 @@ namespace BugTrackingApplication {
             int nullValues = 0;
             int groupValues = 0;
             int projectValues = 100;
-            if (roleTextBox.Text == "manager") {
+            if (metroComboBox1.Text == "manager") {
                 groupValues = 200;
-            } else if (roleTextBox.Text == "developer") {
+            } else if (metroComboBox1.Text == "developer") {
                 groupValues = 201;
             } else {
                 groupValues = 202;
+            }
+
+            string sqlSelectProjectQuery = "SELECT  * from projectTable WHERE projectname = '" + metroComboBox2.Text + "'";
+            sqlDataAdapter = dataconnection.selectSelectedDataConnectionStart(sqlSelectProjectQuery);
+            sqlDataAdapter.Fill(dataTable);
+            foreach (DataRow row in dataTable.Rows) {
+                projectValues = (int)row["id"];
             }
 
             if (util.IsValidEmail(emailTextBox.Text)) {
@@ -78,18 +90,41 @@ namespace BugTrackingApplication {
                 foreach (DataRow row in dataTable.Rows) {
                     checkEmail = row["email"].ToString();
                 }
+                string passwordHashed;
+                using (SHA256 shaM = new SHA256Managed()) {
+                    passwordHashed = BitConverter.ToString(shaM.ComputeHash(Encoding.UTF8.GetBytes(passwordTextBox.Text)));
+                }
+                string sliced = passwordHashed;
                 if (checkEmail != emailTextBox.Text) {
                     dataconnection.connectionStop();
-                    string sqlQuery = "INSERT INTO userTable (name ,username ,email ,password ,gender ,address ,role ,project, flag) VALUES ('" + nameTextBox.Text + "','" + userNameTextBox.Text + "','" + emailTextBox.Text + "','" + passwordTextBox.Text + "','" + genderTextBox.Text + "','" + addressTextBox.Text + "'," + groupValues + "," + projectValues + "," + nullValues + ")";
-                    if (dataconnection.insertConnectionStart(sqlQuery) == "1") {
-                        // Register Successfull
-                        MetroMessageBox.Show(this, "You Are Now Registered As " + emailTextBox.Text, "Registration Successful", MessageBoxButtons.OK, MessageBoxIcon.None);
-                        redirectLoginForm();            // Redirects to the Login Form
+                    if (rePasswordTextBox.Text == passwordTextBox.Text) {
+                        if (metroComboBox1.Text == "manager") {
+                            int managerValue = 1;
+                            string sqlQuery = "INSERT INTO userTable (name ,username ,email ,password ,gender ,address ,role ,project, flag) VALUES ('" + nameTextBox.Text + "','" + userNameTextBox.Text + "','" + emailTextBox.Text + "','" + sliced + "','" + genderTextBox.Text + "','" + addressTextBox.Text + "'," + groupValues + "," + projectValues + "," + managerValue + ")";
+                            if (dataconnection.insertConnectionStart(sqlQuery) == "1") {
+                                // Register Successfull
+                                MetroMessageBox.Show(this, "You Are Now Registered As " + emailTextBox.Text, "Registration Successful", MessageBoxButtons.OK, MessageBoxIcon.None);
+                                redirectLoginForm();            // Redirects to the Login Form
+                            } else {
+                                // Register Unsuccessfull
+                                MetroMessageBox.Show(this, "The Values Doesnt Match Up", "Registration UnSuccessful", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                            dataconnection.connectionStop();
+                        } else {
+                            string sqlQuery = "INSERT INTO userTable (name ,username ,email ,password ,gender ,address ,role ,project, flag) VALUES ('" + nameTextBox.Text + "','" + userNameTextBox.Text + "','" + emailTextBox.Text + "','" + sliced + "','" + genderTextBox.Text + "','" + addressTextBox.Text + "'," + groupValues + "," + projectValues + "," + nullValues + ")";
+                            if (dataconnection.insertConnectionStart(sqlQuery) == "1") {
+                                // Register Successfull
+                                MetroMessageBox.Show(this, "You Are Now Registered As " + emailTextBox.Text, "Registration Successful", MessageBoxButtons.OK, MessageBoxIcon.None);
+                                redirectLoginForm();            // Redirects to the Login Form
+                            } else {
+                                // Register Unsuccessfull
+                                MetroMessageBox.Show(this, "The Values Doesnt Match Up", "Registration UnSuccessful", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                            dataconnection.connectionStop();
+                        }
                     } else {
-                        // Register Unsuccessfull
-                        MetroMessageBox.Show(this, "The Values Doesnt Match Up", "Registration UnSuccessful", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MetroMessageBox.Show(this, "Password Doesn't Match", "Registration UnSuccessful", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                    dataconnection.connectionStop();
                 } else {
                     MetroMessageBox.Show(this, "Email Already Registered", "Registration UnSuccessful", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
