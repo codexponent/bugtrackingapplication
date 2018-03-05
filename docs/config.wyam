@@ -1,8 +1,9 @@
 #recipe Docs
 
 // Customize your settings and add new ones here
-Settings[Keys.Host] = "host.com";
+Settings[Keys.Host] = "codexponent.github.io";
 Settings[DocsKeys.Title] = "My Docs";
-Settings[Keys.LinkRoot] = "/docs";
+Settings[Keys.LinksUseHttps] = true;
+Settings[Keys.LinkRoot] = "bugtrackingapplication";
 
 // Add any pipeline customizations here
